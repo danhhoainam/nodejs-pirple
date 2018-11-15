@@ -38,7 +38,7 @@ httpsServer.listen(config.httpsPort, function() {
   console.log('The HTTPs server is listening on port ' + config.httpsPort + ' now. Let rumble this world.')
 });
 
-// ==================== HANDLERS ====================
+// ==================== HANDLERS - START ====================
 const handlers = {
   ping: pingHandler,
   notFound: notFoundHandler,
@@ -65,14 +65,16 @@ function helloHandler(data, callback) {
   callback(404, helloMessage);
 }
 
-// ==================== HANDLERS ====================
+// ==================== HANDLERS - END ====================
 
+// ==================== ROUTERS - START ====================
 const router = {
   'ping': handlers.ping,
   'hello': handlers.hello,
 };
+// ==================== ROUTERS - END ====================
 
-//
+// create unified server
 const unifiedServer = function(req, res) {
   // get the url and parse it
   const parsedUrl = url.parse(req.url, PARSING_QUERY_STRING);
